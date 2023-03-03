@@ -12,9 +12,14 @@ class Role extends Model
     protected $fillable = [
         'name'
     ];
-    
+
     public function users()
     {
-        return $this->belongsToMany(User::class, 'role_user');
+        return $this->hasMany(User::class);
+    }
+
+    public function usersWithPivot()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps()->withPivot('id');
     }
 }

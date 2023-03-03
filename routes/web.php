@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\IsLibrarian;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LibrarianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +22,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// reader
+Route::middleware([Authenticate::class])->group(function () {
+    Route::get('/home', [BookController::class, 'index']);
+    // librerian
+    Route::middleware([IsLibrarian::class])->group(function () {
+        Route::get('/dashboard', [LibrarianController::class, 'index'])->name('dashboard');
+        Route::get('/users', [LibrarianController::class, 'users'])->name('users');
+        Route::get('/books', [LibrarianController::class, 'books'])->name('books');
+        Route::get('/authors', [LibrarianController::class, 'author'])->name('author');
+        Route::get('/users/{id}', [LibrarianController::class, 'user'])->name('user');
+        Route::get('/books/{id}', [LibrarianController::class, 'book'])->name('book');
+        Route::get('/authors/{id}', [LibrarianController::class, 'authors'])->name('authors');
+        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';

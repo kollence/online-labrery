@@ -16,12 +16,11 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles = Role::whereIn('name', ['librarian', 'reader'])->get();
-        $users = User::all();
+        $roles = Role::all();
 
-        $users->each(function ($user) use ($roles) {
+        User::all()->each(function ($user) use ($roles) {
             $user->roles()->attach(
-                $roles->random(rand(1, 2))->pluck('id')->toArray()
+                $roles->random()->id
             );
         });
     }
