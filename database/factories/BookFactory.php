@@ -20,7 +20,7 @@ class BookFactory extends Factory
         return [
             'title' => $this->faker->sentence(5),
             'description' => $this->faker->paragraph(3),
-            'book_number' => Hash::make($this->faker->unique()->randomNumber(6)),
+            'book_number' => $this->faker->unique()->regexify('[A-Za-z0-9]{4}'),
         ];
     }
 }
