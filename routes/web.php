@@ -31,9 +31,16 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::get('/dashboard', [LibrarianController::class, 'index'])->name('dashboard');
         Route::get('/users', [LibrarianController::class, 'users'])->name('users');
         Route::get('/books', [LibrarianController::class, 'books'])->name('books');
+        Route::get('/booksdt', [LibrarianController::class, 'booksdt'])->name('booksdt');
         Route::get('/authors', [LibrarianController::class, 'author'])->name('author');
         Route::get('/users/{id}', [LibrarianController::class, 'user'])->name('user');
-        Route::get('/books/{id}', [LibrarianController::class, 'book'])->name('book');
+
+        Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
+        Route::post('/books/store', [BookController::class, 'store'])->name('book.store');
+        Route::get('/books/{book}', [BookController::class, 'edit'])->name('book.edit');
+        Route::put('/books/{book}', [BookController::class, 'update'])->name('book.update');
+        Route::post('/books/{book}', [BookController::class, 'destroy'])->name('book.delete');
+
         Route::get('/authors/{id}', [LibrarianController::class, 'authors'])->name('authors');
         // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

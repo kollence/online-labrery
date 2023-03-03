@@ -16,7 +16,7 @@
             margin: 0;
         }
         body{
-            background-color: rgb(30, 30, 30);
+            background-color: rgb(40, 50, 70);
             color: orange;
         }
     </style>

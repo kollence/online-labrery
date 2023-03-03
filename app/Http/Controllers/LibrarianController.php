@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\User;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class LibrarianController extends Controller
 {
@@ -24,9 +25,13 @@ class LibrarianController extends Controller
     }
     public function books()
     {
-        $books = Book::all();
-
-        return view('website.pages.books', compact('books'));
+        return view('website.pages.books');
+        
+    }
+    public function booksdt()
+    {
+        $books = Book::select(['id', 'title', 'description', 'book_number', 'author_id', 'created_at']);
+        return DataTables::of($books)->make();
     }
     public function authors()
     {
