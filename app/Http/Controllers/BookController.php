@@ -21,6 +21,12 @@ class BookController extends Controller
 
         return view('website.pages.home', compact('books'));
     }
+    public function home()
+    {
+        $books = Book::paginate(9);
+
+        return view('website.pages.home', compact('books'));
+    }
 
     /**
      * Show the form for creating a new resource.

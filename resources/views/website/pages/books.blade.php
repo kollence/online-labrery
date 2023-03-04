@@ -101,7 +101,7 @@
     function edititem(obj) {
         let rowID = $(obj).attr('id');
         let bookId = $(obj).closest('tr').find('td:first').html();
-        let url1 = '{{ route("book.edit", ":id") }}';
+        let url1 = '{{ route("books.edit", ":id") }}';
         const urlz = url1.replace(':id', bookId);
         // alert(url)
         window.location.href = urlz;
@@ -114,7 +114,7 @@
         // confirm('Are you 101% sure that you maybe want to delete?')
         let rowID = $(obj).attr('id');
         let bookId = $(obj).closest('tr').find('td:first').html();
-        let url2 = '{{ route("book.delete", ":id") }}';
+        let url2 = '{{ route("books.delete", ":id") }}';
         const urld = url2.replace(':id', bookId);
  // Delete record;
 

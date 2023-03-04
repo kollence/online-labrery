@@ -1,6 +1,6 @@
 <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="/home">Online Library</a>
+    <li class="nav-item bg-secondary border rounded border-warning mr-auto">
+        <a class="nav-link active text-warning" href="/home">Online Library</a>
     </li>
 
     @if (Route::has('login'))
@@ -10,11 +10,21 @@
             <li class="nav-item">
                 <a class="nav-link active" href="{{ url('/dashboard') }}">Dashboard</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/books') }}">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/authors') }}">Authors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/users') }}">Users</a>
+            </li>
             @else
             <li class="nav-item">
                 <a href="/profile" class="nav-link">Profile</a>
             </li>
             @endif
+            <div class="nav-item ml-auto">
             <form method="POST" action="{{ route('logout') }}" class="nav-item">
                     @csrf
 
@@ -24,6 +34,7 @@
                         {{ __('Log Out') }}
                     </a>
                 </form>
+            </div>
             
         @else
             <li class="nav-item">

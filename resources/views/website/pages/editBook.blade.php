@@ -13,7 +13,7 @@
     <div class="products-wrap">
         <div class="d-flex justify-content-center">
             <div class="col-6">
-                <form action="{{ route('book.update', $book->id) }}" class="" method="POST">
+                <form action="{{ route('books.update', $book->id) }}" class="" method="POST">
                     @csrf
                     @method('PUT')
 
